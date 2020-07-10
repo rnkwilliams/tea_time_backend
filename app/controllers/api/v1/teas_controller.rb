@@ -2,13 +2,13 @@ class Api::V1::TeasController < ApplicationController
 
   def index
     teas = Tea.all
-    render json: teas
+    render json: TeaSerializer.new(teas)
   end
   
   def show
     tea = Tea.find_by(id: params[:id])
       if tea
-          render json: tea
+          render json: TeaSerializer.new(tea)
       else
           render json: {message: 'Tea not found'}
       end
@@ -21,7 +21,7 @@ class Api::V1::TeasController < ApplicationController
     tea.category = category
 
     if tea.save
-      render json: tea
+      render json: TeaSerializer.new(tea)
     else
       render json: {message: 'Your tea creation did not save'}
     end
