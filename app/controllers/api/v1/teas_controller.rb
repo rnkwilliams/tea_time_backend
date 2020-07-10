@@ -4,6 +4,15 @@ class Api::V1::TeasController < ApplicationController
     teas = Tea.all
     render json: teas
   end
+  
+  def show
+    tea = Tea.find_by(id: params[:id])
+      if tea
+          render json: tea
+      else
+          render json: {message: 'Tea not found'}
+      end
+  end
 
   def create
     category = Category.find_by(id: post_params["category_id"])
