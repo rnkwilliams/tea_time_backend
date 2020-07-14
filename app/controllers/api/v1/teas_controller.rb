@@ -15,7 +15,7 @@ class Api::V1::TeasController < ApplicationController
   end
 
   def create
-    category = Category.find_by(id: post_params["category_id"])
+    category = Category.find_by(id: tea_params["category_id"])
 
     tea = Tea.new(tea_params)
     tea.category = category
