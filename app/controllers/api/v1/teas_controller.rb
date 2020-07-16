@@ -27,6 +27,12 @@ class Api::V1::TeasController < ApplicationController
     end
   end
 
+  def destroy
+    tea = Tea.find_by(id: params[:id])
+    tea.delete
+    render json: {teaId: tea.id}
+  end
+
   private
 
   def tea_params
