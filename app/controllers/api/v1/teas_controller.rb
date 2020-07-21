@@ -27,6 +27,12 @@ class Api::V1::TeasController < ApplicationController
     end
   end
 
+  def update
+    tea = Tea.find_by(id: params[:id])
+    tea.update(tea_params)
+    render json: TeaSerializer.new(tea), status: 200
+  end
+
   def destroy
     tea = Tea.find_by(id: params[:id])
     tea.delete
