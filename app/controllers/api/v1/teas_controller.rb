@@ -20,7 +20,7 @@ class Api::V1::TeasController < ApplicationController
     tea = Tea.new(tea_params)
     tea.category = category
 
-    if tea.save
+    if tea.save!
       render json: TeaSerializer.new(tea)
     else
       render json: {message: 'Your tea creation did not save'}
